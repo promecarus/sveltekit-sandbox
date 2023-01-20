@@ -19,7 +19,8 @@
 		.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => word.toUpperCase())
 		.replace(/\s+/g, ' ');
 	$: upperCase = text.trim().toUpperCase();
-	let extension = 'a';
+	let extension = 'm p 3';
+	$: extension = extension.replace(/\s/g, '');
 </script>
 
 <div class="text-center">
