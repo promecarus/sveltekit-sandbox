@@ -1,23 +1,24 @@
 <script>
-	let text = 'woRld of waRCraft';
+	let text = 'woRld of waRCraft   ';
 	$: camelCase = text
 		.toLowerCase()
 		.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) =>
 			index === 0 ? word.toLowerCase() : word.toUpperCase()
 		)
 		.replace(/\s+/g, '');
-	$: kebabCase = text.toLowerCase().replace(/\s/g, '-');
-	$: lowerCase = text.toLowerCase();
+	$: kebabCase = text.trim().toLowerCase().replace(/\s/g, '-');
+	$: lowerCase = text.trim().toLowerCase();
 	$: pascalCase = text
 		.toLowerCase()
 		.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => word.toUpperCase())
 		.replace(/\s+/g, '');
-	$: snakeCase = text.toLowerCase().replace(/\s/g, '_').toLowerCase();
+	$: snakeCase = text.trim().toLowerCase().replace(/\s/g, '_').toLowerCase();
 	$: titleCase = text
+		.trim()
 		.toLowerCase()
 		.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => word.toUpperCase())
 		.replace(/\s+/g, ' ');
-	$: upperCase = text.toUpperCase();
+	$: upperCase = text.trim().toUpperCase();
 	let extension = 'a';
 </script>
 
