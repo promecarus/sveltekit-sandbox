@@ -18,15 +18,17 @@
 		.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => word.toUpperCase())
 		.replace(/\s+/g, ' ');
 	$: upperCase = text.toUpperCase();
+	let extension = 'a';
 </script>
 
 <div class="text-center">
 	<input type="text" bind:value={text} class="text-center" />
+	<input type="text" bind:value={extension} class="text-center" />
 </div>
-<p>camelCase: {camelCase}</p>
-<p>kebab-case: {kebabCase}</p>
-<p>lower case: {lowerCase}</p>
-<p>PascalCase: {pascalCase}</p>
-<p>snake_case: {snakeCase}</p>
-<p>Title Case: {titleCase}</p>
-<p>UPPER CASE: {upperCase}</p>
+<p>camelCase: {camelCase + (extension ? '.' + extension : '')}</p>
+<p>kebab-case: {kebabCase + (extension ? '.' + extension : '')}</p>
+<p>lower case: {lowerCase + (extension ? '.' + extension : '')}</p>
+<p>PascalCase: {pascalCase + (extension ? '.' + extension : '')}</p>
+<p>snake_case: {snakeCase + (extension ? '.' + extension : '')}</p>
+<p>Title Case: {titleCase + (extension ? '.' + extension : '')}</p>
+<p>UPPER CASE: {upperCase + (extension ? '.' + extension : '')}</p>
