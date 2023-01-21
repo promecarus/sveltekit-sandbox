@@ -34,3 +34,6 @@
 <p>snake_case: {snakeCase + (extension ? '.' + extension : '')}</p>
 <p>Title Case: {titleCase + (extension ? '.' + extension : '')}</p>
 <p>UPPER CASE: {upperCase + (extension ? '.' + extension : '')}</p>
+<button class="btn">Button</button>
+<button class="btn btn-primary">Button</button>
+<button class="btn w-64 rounded-full">Button</button>
