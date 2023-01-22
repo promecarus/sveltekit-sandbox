@@ -1,39 +1,56 @@
 <script>
 	let text = 'woRld of waR  Craft   ';
-	$: camelCase = text
-		.toLowerCase()
-		.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) =>
-			index === 0 ? word.toLowerCase() : word.toUpperCase()
-		)
-		.replace(/\s+/g, '');
-	$: kebabCase = text.trim().toLowerCase().replace(/\s+/g, '-');
-	$: lowerCase = text.trim().toLowerCase();
-	$: pascalCase = text
-		.toLowerCase()
-		.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => word.toUpperCase())
-		.replace(/\s+/g, '');
-	$: snakeCase = text.trim().toLowerCase().replace(/\s+/g, '_').toLowerCase();
-	$: titleCase = text
-		.trim()
-		.toLowerCase()
-		.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => word.toUpperCase())
-		.replace(/\s+/g, ' ');
-	$: upperCase = text.trim().toUpperCase();
 	let extension = 'm p 3';
 	$: extension = extension.replace(/\s/g, '');
+
+	$: result = {
+		camelCase: text
+			.toLowerCase()
+			.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) =>
+				index === 0 ? word.toLowerCase() : word.toUpperCase()
+			)
+			.replace(/\s+/g, ''),
+		'kebab-case': text.trim().toLowerCase().replace(/\s+/g, '-'),
+		'lower case': text.trim().toLowerCase(),
+		PascalCase: text
+			.toLowerCase()
+			.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => word.toUpperCase())
+			.replace(/\s+/g, ''),
+		snake_case: text.trim().toLowerCase().replace(/\s+/g, '_').toLowerCase(),
+		'Title Case': text
+			.trim()
+			.toLowerCase()
+			.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => word.toUpperCase())
+			.replace(/\s+/g, ' '),
+		'UPPER CASE': text.trim().toUpperCase()
+	};
 </script>
+
+<article class="prose lg:prose-xl">
+	<h1>halo</h1>
+	{@html text}
+</article>
 
 <div class="text-center">
 	<input type="text" bind:value={text} class="text-center" />
 	<input type="text" bind:value={extension} class="text-center" />
 </div>
-<p>camelCase: {camelCase + (extension ? '.' + extension : '')}</p>
-<p>kebab-case: {kebabCase + (extension ? '.' + extension : '')}</p>
-<p>lower case: {lowerCase + (extension ? '.' + extension : '')}</p>
-<p>PascalCase: {pascalCase + (extension ? '.' + extension : '')}</p>
-<p>snake_case: {snakeCase + (extension ? '.' + extension : '')}</p>
-<p>Title Case: {titleCase + (extension ? '.' + extension : '')}</p>
-<p>UPPER CASE: {upperCase + (extension ? '.' + extension : '')}</p>
-<button class="btn">Button</button>
-<button class="btn btn-primary">Button</button>
-<button class="btn w-64 rounded-full">Button</button>
+
+<div class="mx-auto">
+	<table class="w-12 table m-5">
+		<thead>
+			<tr>
+				<th />
+				<th class="text-center">Result</th>
+			</tr>
+		</thead>
+		<tbody>
+			{#each Object.keys(result) as item}
+				<tr class="hover">
+					<td>{item}</td>
+					<td>{result[item] + (text.trim().length && extension.length ? `.${extension}` : '')}</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
+</div>
