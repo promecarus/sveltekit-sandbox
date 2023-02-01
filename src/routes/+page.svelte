@@ -1,7 +1,7 @@
-<script>
-	let text = 'woRld of waR  Craft   ';
-	let extension = 'm p 3';
-	$: extension = extension.replace(/\s/g, '');
+<script lang="ts">
+	let text: string = "woRld of waR  Craft   "
+	let extension = "js"
+	$: extension = extension.replace(/\s/g, "")
 
 	$: result = {
 		camelCase: text
@@ -9,21 +9,21 @@
 			.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) =>
 				index === 0 ? word.toLowerCase() : word.toUpperCase()
 			)
-			.replace(/\s+/g, ''),
-		'kebab-case': text.trim().toLowerCase().replace(/\s+/g, '-'),
-		'lower case': text.trim().toLowerCase(),
+			.replace(/\s+/g, ""),
+		"kebab-case": text.trim().toLowerCase().replace(/\s+/g, "-"),
+		"lower case": text.trim().toLowerCase(),
 		PascalCase: text
 			.toLowerCase()
 			.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => word.toUpperCase())
-			.replace(/\s+/g, ''),
-		snake_case: text.trim().toLowerCase().replace(/\s+/g, '_').toLowerCase(),
-		'Title Case': text
+			.replace(/\s+/g, ""),
+		snake_case: text.trim().toLowerCase().replace(/\s+/g, "_").toLowerCase(),
+		"Title Case": text
 			.trim()
 			.toLowerCase()
 			.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => word.toUpperCase())
-			.replace(/\s+/g, ' '),
-		'UPPER CASE': text.trim().toUpperCase()
-	};
+			.replace(/\s+/g, " "),
+		"UPPER CASE": text.trim().toUpperCase()
+	}
 </script>
 
 <article class="prose lg:prose-xl">
@@ -37,7 +37,7 @@
 </div>
 
 <div class="mx-auto">
-	<table class="w-12 table m-5">
+	<table class="m-5 table w-12">
 		<thead>
 			<tr>
 				<th />
@@ -48,7 +48,10 @@
 			{#each Object.keys(result) as item}
 				<tr class="hover">
 					<td>{item}</td>
-					<td>{result[item] + (text.trim().length && extension.length ? `.${extension}` : '')}</td>
+					<td
+						>{result[item] +
+							(text.trim().length && extension.length ? `.${extension}` : "")}</td
+					>
 				</tr>
 			{/each}
 		</tbody>
