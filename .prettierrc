@@ -1,4 +1,5 @@
 {
+	"arrowParens": "avoid",
 	"overrides": [
 		{
 			"files": "*.svelte",
@@ -9,7 +10,7 @@
 	],
 	"plugins": ["prettier-plugin-svelte"],
 	"pluginSearchDirs": ["."],
-	"printWidth": 100,
+	"printWidth": 200,
 	"semi": false,
 	"tabWidth": 4,
 	"trailingComma": "none",

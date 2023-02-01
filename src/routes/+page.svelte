@@ -6,9 +6,7 @@
 	$: result = {
 		camelCase: text
 			.toLowerCase()
-			.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) =>
-				index === 0 ? word.toLowerCase() : word.toUpperCase()
-			)
+			.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => (index === 0 ? word.toLowerCase() : word.toUpperCase()))
 			.replace(/\s+/g, ""),
 		"kebab-case": text.trim().toLowerCase().replace(/\s+/g, "-"),
 		"lower case": text.trim().toLowerCase(),
@@ -48,10 +46,7 @@
 			{#each Object.keys(result) as item}
 				<tr class="hover">
 					<td>{item}</td>
-					<td
-						>{result[item] +
-							(text.trim().length && extension.length ? `.${extension}` : "")}</td
-					>
+					<td>{result[item] + (text.trim().length && extension.length ? `.${extension}` : "")}</td>
 				</tr>
 			{/each}
 		</tbody>
