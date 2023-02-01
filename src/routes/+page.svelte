@@ -1,4 +1,5 @@
 <script lang="ts">
+	import H1 from "$lib/components/H1.svelte"
 	let text: string = "woRld of waR  Craft   "
 	let extension = "js"
 	$: extension = extension.replace(/\s/g, "")
@@ -24,31 +25,34 @@
 	}
 </script>
 
-<article class="prose lg:prose-xl">
-	<h1>halo</h1>
-	{@html text}
-</article>
+<svelte:head>
+	<title>Home</title>
+</svelte:head>
 
-<div class="text-center">
-	<input type="text" bind:value={text} class="text-center" />
-	<input type="text" bind:value={extension} class="text-center" />
+<H1 text="Home" />
+
+<div class="grid grid-cols-6 gap-3">
+	<textarea bind:value={text} class="col-span-2 col-start-3" />
+	<input type="text" bind:value={extension} class="col-span-2 col-start-3 text-center" />
 </div>
 
-<div class="mx-auto">
-	<table class="m-5 table w-12">
-		<thead>
-			<tr>
-				<th />
-				<th class="text-center">Result</th>
+<table class="mx-auto table">
+	<thead>
+		<tr>
+			<th />
+			<th class="text-center">Result</th>
+		</tr>
+	</thead>
+	<tbody>
+		{#each Object.keys(result) as item}
+			<tr class="hover">
+				<td>{item}</td>
+				<td>{result[item] + (text.trim().length && extension.length ? `.${extension}` : "")}</td>
 			</tr>
-		</thead>
-		<tbody>
-			{#each Object.keys(result) as item}
-				<tr class="hover">
-					<td>{item}</td>
-					<td>{result[item] + (text.trim().length && extension.length ? `.${extension}` : "")}</td>
-				</tr>
-			{/each}
-		</tbody>
-	</table>
+		{/each}
+	</tbody>
+</table>
+
+<div class="prose lg:prose-xl">
+	{@html text}
 </div>
