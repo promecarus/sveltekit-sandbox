@@ -1,9 +1,13 @@
 <script lang="ts">
 	import H1 from "$lib/components/H1.svelte"
+
 	let text: string = "woRld of waR  Craft   "
+	$: text = text.replace(/[\\/:*?"<>\|]/g, "")
+
 	let extension = "js"
 	$: extension = extension.replace(/\s/g, "")
 
+	let result: Record<string, string> = {}
 	$: result = {
 		camelCase: text
 			.toLowerCase()
