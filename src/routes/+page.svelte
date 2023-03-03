@@ -17,13 +17,13 @@
 		"lower case": text.trim().toLowerCase(),
 		PascalCase: text
 			.toLowerCase()
-			.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => word.toUpperCase())
+			.replace(/(?:^\w|[A-Z]|\b\w)/g, word => word.toUpperCase())
 			.replace(/\s+/g, ""),
 		snake_case: text.trim().toLowerCase().replace(/\s+/g, "_").toLowerCase(),
 		"Title Case": text
 			.trim()
 			.toLowerCase()
-			.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => word.toUpperCase())
+			.replace(/(?:^\w|[A-Z]|\b\w)/g, word => word.toUpperCase())
 			.replace(/\s+/g, " "),
 		"UPPER CASE": text.trim().toUpperCase()
 	}
