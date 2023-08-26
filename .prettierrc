@@ -12,7 +12,6 @@
 	"pluginSearchDirs": ["."],
 	"printWidth": 200,
 	"semi": false,
-	"tabWidth": 4,
 	"trailingComma": "none",
 	"useTabs": true
 }

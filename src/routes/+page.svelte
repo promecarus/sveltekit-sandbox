@@ -1,62 +1,43 @@
-<script lang="ts">
-	import H1 from "$lib/components/H1.svelte"
+<script>
+	import { camelCase, kebabCase, lowerCase, upperFirst, snakeCase, startCase, upperCase, trim } from "lodash"
 
-	let text: string = "woRld of waR  Craft   "
-	$: text = text.replace(/[\\/:*?"<>\|]/g, " ")
+	let text = "Among Us"
 
 	let extension = "js"
-	$: extension = extension.replace(/\s/g, "")
+	$: extension = trim(extension)
 
-	let result: Record<string, string> = {}
+	/**
+	 * @type {Object<string, string>}
+	 * */
+	let result = {}
 	$: result = {
-		camelCase: text
-			.toLowerCase()
-			.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => (index === 0 ? word.toLowerCase() : word.toUpperCase()))
-			.replace(/\s+/g, ""),
-		"kebab-case": text.trim().toLowerCase().replace(/\s+/g, "-"),
-		"lower case": text.trim().toLowerCase(),
-		PascalCase: text
-			.toLowerCase()
-			.replace(/(?:^\w|[A-Z]|\b\w)/g, word => word.toUpperCase())
-			.replace(/\s+/g, ""),
-		snake_case: text.trim().toLowerCase().replace(/\s+/g, "_").toLowerCase(),
-		"Title Case": text
-			.trim()
-			.toLowerCase()
-			.replace(/(?:^\w|[A-Z]|\b\w)/g, word => word.toUpperCase())
-			.replace(/\s+/g, " "),
-		"UPPER CASE": text.trim().toUpperCase()
+		camelCase: camelCase(text),
+		"kebab-case": kebabCase(text),
+		"lower case": lowerCase(text),
+		PascalCase: upperFirst(camelCase(text)),
+		snake_case: snakeCase(text),
+		"Title Case": startCase(text),
+		"UPPER CASE": upperCase(text)
 	}
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>Case</title>
 </svelte:head>
 
-<H1 text="Home" />
+<h1>Case</h1>
 
-<div class="grid grid-cols-6 gap-3">
-	<textarea bind:value={text} class="col-span-2 col-start-3" />
-	<input type="text" bind:value={extension} class="col-span-2 col-start-3 text-center" />
-</div>
+<textarea bind:value={text} />
+<input type="text" bind:value={extension} />
 
-<table class="mx-auto table">
-	<thead>
-		<tr>
-			<th />
-			<th class="text-center">Result</th>
-		</tr>
-	</thead>
+<table>
 	<tbody>
 		{#each Object.keys(result) as item}
-			<tr class="hover">
+			<tr>
 				<td>{item}</td>
 				<td>{result[item] + (text.trim().length && extension.length ? `.${extension}` : "")}</td>
+				<td><button on:click={() => navigator.clipboard.writeText(result[item] + (text.trim().length && extension.length ? `.${extension}` : ""))}>Copy</button></td>
 			</tr>
 		{/each}
 	</tbody>
 </table>
-
-<div class="prose lg:prose-xl">
-	{@html text}
-</div>
